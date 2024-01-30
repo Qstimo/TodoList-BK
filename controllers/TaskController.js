@@ -9,7 +9,6 @@ export const create = async (req, res) => {
             deadline: req.body.deadline,
         })
         const todo = await doc.save();
-        console.log(todo);
         res.json(todo);
     } catch (error) {
         console.log(error)
@@ -44,3 +43,30 @@ export const getTasksСompleted = async (req, res) => {
         res.status(500).json({ message: "Todo not find" })
     }
 }
+export const remove = async (req, res) => {
+    try {
+        const todoId = req.params.id;
+        const doc = await TasksModel.findByIdAndDelete({ _id: todoId });
+        if (!doc) { res.status(500).json({ message: "Todo not delete" }) }
+        res.json({ success: true });
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: "todo not delete" })
+    }
+}
+export const checked = async (req, res) => {
+    try {
+        const todoId = req.params.id;
+        console.log(req.body.files)
+        await TasksModel.updateOne(
+            { _id: todoId },
+            {
+                tasks: req.body.files
+            }
+        );
+        res.json({ success: true });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Не удалось обновить задачи" });
+    }
+};

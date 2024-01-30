@@ -41,8 +41,8 @@ app.get('/todo', TaskController.getTasks);
 app.get('/todo/completed', TaskController.getTasksСompleted);
 app.post('/todo', TaskController.create)
 // app.get('/posts/populate', PostController.getPopulatePosts);
-// app.patch('/posts/:id', checkAuth, PostController.update);
-// app.delete('/posts/:id', PostController.remove);
+app.patch('/todo/checked/:id', TaskController.checked);
+app.delete('/todo/:id', TaskController.remove);
 
 
 // app.delete('/posts/comments/:id', checkAuth, CommentController.remove);

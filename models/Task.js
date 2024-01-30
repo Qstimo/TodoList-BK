@@ -1,25 +1,25 @@
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
 
-const TaskSchema = new mongoose.Schema({
-    id: {
-        type: Number,
-        required: true,
-    },
-    name: {
-        type: String,
-        required: true,
-    },
-    description: {
-        type: String,
-        required: true,
-    },
-    checked: {
-        type: Boolean,
-        default: false,
-    }
+// const TaskSchema = new mongoose.Schema({
+//     id: {
+//         type: Number,
+//         required: true,
+//     },
+//     name: {
+//         type: String,
+//         required: true,
+//     },
+//     description: {
+//         type: String,
+//         required: true,
+//     },
+//     checked: {
+//         type: Boolean,
+//         default: false,
+//     }
 
-}, {
-    timestamps: true
-})
+// }, {
+//     timestamps: true
+// })
 
-export default mongoose.model('Task', TaskSchema)
+// export default mongoose.model('Task', TaskSchema)
