@@ -16,8 +16,19 @@ export const create = async (req, res) => {
     }
 }
 export const getTasks = async (req, res) => {
+
     try {
-        const todos = await TasksModel.find()
+        const { searchTerm } = req.query;
+        let query = {};
+        if (searchTerm) {
+            query = {
+                $or: [
+                    { name: { $regex: searchTerm, $options: 'i' } },
+                ]
+            }
+        }
+
+        const todos = await TasksModel.find(query)
             .sort({ createdAt: 'desc' })
             .exec();
         const newTasks = todos
@@ -57,7 +68,6 @@ export const remove = async (req, res) => {
 export const checked = async (req, res) => {
     try {
         const todoId = req.params.id;
-        console.log(req.body.files)
         await TasksModel.updateOne(
             { _id: todoId },
             {
@@ -68,5 +78,21 @@ export const checked = async (req, res) => {
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Не удалось обновить задачи" });
+    }
+};
+export const removeTask = async (req, res) => {
+    try {
+        const todoId = req.params.id;
+        console.log(req.body.files)
+        await TasksModel.updateOne(
+            { _id: todoId },
+            {
+                tasks: req.body.files
+            }
+        );
+        res.json({ success: true });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Не удалось удалить задачу" });
     }
 };
