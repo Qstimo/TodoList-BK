@@ -40,6 +40,7 @@ app.get('/', (req, res) => {
 app.get('/todo', TaskController.getTasks);
 app.get('/todo/completed', TaskController.getTasksСompleted);
 app.post('/todo', TaskController.create)
+app.patch('/todo/:id', TaskController.updateTodo);
 app.patch('/todo/checked/:id', TaskController.checked);
 app.patch('/todo/remove_task/:id', TaskController.removeTask);
 app.delete('/todo/:id', TaskController.remove);

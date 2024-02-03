@@ -80,6 +80,24 @@ export const checked = async (req, res) => {
         res.status(500).json({ message: "Не удалось обновить задачи" });
     }
 };
+export const updateTodo = async (req, res) => {
+    try {
+        const todoId = req.params.id;
+        await TasksModel.updateOne(
+            { _id: todoId },
+            {
+                name: req.body.name,
+                tasks: req.body.tasks,
+                date: req.body.date,
+                deadline: req.body.deadline,
+            }
+        );
+        res.json({ success: true });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Не удалось обновить задачи" });
+    }
+};
 export const removeTask = async (req, res) => {
     try {
         const todoId = req.params.id;

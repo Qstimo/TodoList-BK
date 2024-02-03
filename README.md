@@ -1,4 +1,6 @@
-# TodoList-BK
-# TodoList-BK
-# TodoList-BK
-# TodoList-BK
+# запуск приложения:
+# установить зависимости
+    "npm install"
+# запуск приложения:
+    "npm start"
+
